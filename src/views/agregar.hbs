@@ -1,0 +1,35 @@
+<div class="col-xs-6">
+	<div class="panel panel-danger">
+		<div class="panel-heading">
+			<label>Add new persona</label>
+		</div>
+		<div class="panel-body">
+			<div class="container-fluid">
+				{{#if error}}
+					<div class="alert alert-danger">There was an error validating your data, guess what it is and try again.</div>
+				{{/if}}
+				<form role="form" action="/add" method="POST">
+					<div class="form-group">
+						<label class="control-label">Name:</label>
+							<input type="text" class="form-control" name="name" value="{{persona.name}}" required />
+					</div>
+					<div class="form-group">
+						<label class="control-label">Lastname:</label>
+							<input type="text" class="form-control" name="lastname" value="{{persona.lastname}}" required />
+					</div>
+					<div class="form-group">
+						<label class="control-label">Age:</label>
+							<input type="number" class="form-control" name="age" value="{{persona.age}}" required />
+					</div>
+					<div class="form-group">
+						<label class="control-label">University:</label>
+							<input type="text" class="form-control" name="university" value="{{persona.university}}" required />
+					</div>
+
+					 <input type="submit" value="Add" class="btn btn-success" />
+					 <a href="/" class="btn btn-danger">Go back</a>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
