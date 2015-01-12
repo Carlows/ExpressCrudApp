@@ -6,6 +6,6 @@ var peopleSchema = new Schema({
 	lastname: String,
 	age: { type: Number, min:10, max: 60 },
 	university: String
-});
+}, {collection: 'people'});
 
 module.exports = mongoose.model('People', peopleSchema);

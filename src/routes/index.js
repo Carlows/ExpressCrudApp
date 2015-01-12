@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var validator = require('validator');
 var peopleModel = require('./../models/people');
+var bulkData = require('./../helpers/data');
 
 /* GET home page. */
 router.get('/', function(req, res) {
@@ -47,6 +48,11 @@ router.get('/peoplejson', function(req, res){
 		}
 		res.json({people: ppl});
 	});
+});
+
+/* GET generate people json */
+router.get('/generatepeoplejson', function(req, res){
+	res.json(bulkData);
 });
 
 module.exports = router;
