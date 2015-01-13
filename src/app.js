@@ -4,8 +4,9 @@ var favicon = require('serve-favicon');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var routes = require('./routes/index');
-var users = require('./routes/users');
+var apiRoutes = require('./routes/api');
 var dbconfig = require('./dbconfig');
+var colors = require('colors/safe');
 
 var app = express();
 
@@ -22,14 +23,23 @@ var connectionString = dbconfig.databaseUrl + dbconfig.databaseName;
 
 mongoose.connect(connectionString, function(err, res){
     if(err){
-        console.log('There was an error connecting to the MongoDB database:' + err);
+        console.log(colors.red('There was an error connecting to the MongoDB database:') + err);
     }
     else{
-        console.log('Connected to the database succesfully.');
+        console.log(colors.green('Connected to the database succesfully.'));
     }
 });
 
+// middleware
+// imprime informacion sobre la solicitud.
+app.use(function(req, res, next){
+    console.log(" - " + colors.green(req.method) + " - " + req.path);
+    next();
+});
+
+// routes
 app.use('/', routes);
+app.use('/api', apiRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

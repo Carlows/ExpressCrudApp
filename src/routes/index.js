@@ -33,26 +33,12 @@ router.post('/add', function(req, res){
 
 	nuevaPersona.save(function(err){
 		if(err){
-			res.render('agregar', { error: true, persona: nuevaPersona })
+			return res.render('agregar', { error: true, persona: nuevaPersona });
 		} else {
-			res.redirect('/');
+			return res.redirect('/');
 		}
 	});
 });
 
-/* GET people json */
-router.get('/peoplejson', function(req, res){
-	peopleModel.find(function(err, ppl){
-		if(err){
-			res.status(500).json({error: "There was an error retrieving the people document."});
-		}
-		res.json({people: ppl});
-	});
-});
-
-/* GET generate people json */
-router.get('/generatepeoplejson', function(req, res){
-	res.json(bulkData);
-});
 
 module.exports = router;
